@@ -1,3 +1,4 @@
 flask
 discord_webhook
 requests
+gunicorn
