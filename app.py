@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from discord_webhook import DiscordWebhook
 import requests
 import time
@@ -6,7 +6,6 @@ app = Flask(__name__)
 
 # Load posts from the provided API endpoint
 posts = requests.get("https://api.npoint.io/783f6c134b3269a4e293").json()
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -23,6 +22,12 @@ def index():
         return render_template('index.html', all_posts=posts, success=True)
     else:
         return render_template('index.html', all_posts=posts, success=False)
+
+@app.route('/order_submitted')
+def order_submitted():
+    print('dfsjaldkfasf')
+    return render_template('order_submitted.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
